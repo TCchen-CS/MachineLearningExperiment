@@ -1,7 +1,7 @@
 # 小组信息
 
 - 组员信息：陈天诚（组长）、童邦凡
-- 组员分工：陈天诚（数据库搭建、函数编写、代码实现），童邦凡（功能测试、编写注释、文档补充）
+- 组员分工：陈天诚（数据库搭建、代码及注释编写、文档编辑），童邦凡（功能测试、注释编写、文档编辑）
 - 指导老师：彭伟龙
 
 # 作业题目和内容
@@ -15,7 +15,7 @@
 
 ## 参考
 
-一.数据源1.xlsx
+##### 一.数据源1.xlsx
 
 | ID   | Name  | City     | Gender | Height | C1   | ...  | C10  | Constitution |
 | ---- | ----- | -------- | ------ | ------ | ---- | ---- | ---- | ------------ |
@@ -25,14 +25,16 @@
 
 
 
-一.数据源2-逗号间隔.txt
+##### 二.数据源2-逗号间隔.txt
 
 ID,Name,City,Gender,Height,C1,C2,C3,C4,C5,C6,C7,C8,C9,C10,Constitution
 202001,Marks,Shenzhen,male,1.66,77,100,84,71,91,6,7,6,8,,general
 
+…………
+
 ## 实验内容
 
-两个数据源合并后读入内存，并统计：
+##### 两个数据源合并后读入内存，并统计：
 
 1. 学生中家乡在Beijing的所有课程的平均成绩。
 2. 学生中家乡在广州，课程1在80分以上，且课程9在9分以上的男同学的数量。(备注：该处做了修正，课程10数据为空，更改为课程9)
@@ -41,7 +43,7 @@ ID,Name,City,Gender,Height,C1,C2,C3,C4,C5,C6,C7,C8,C9,C10,Constitution
 
 ## **提示**
 
-参考数据结构：
+##### 参考数据结构：
 
 Student{
 
@@ -72,20 +74,24 @@ vector<float> data;
 
 ## 文件说明
 
-+ 源代码
++ ##### 源代码
+  
   - 「AddData.py」功能：将<一.数据源1.xlsx>表格导入到MySQL数据库
   - 「LoadSqlData.py」功能：从数据库中将数据源1读取为<一.数据源1_NEW.xlsx>
   - 「txtToExcel.py」功能：将文本<一.数据源2-逗号间隔.txt>文件转换为Excel表格的<一.数据源2_NEW.xlsx>文件
   - 「MergeList.py」功能：将之前生成的<一.数据源1_NEW.xlsx>与<一.数据源2_NEW.xlsx>合并为一张表<合并数据源.xlsx>
   - 「DealData.py」功能：处理已合成的数据，解决提出的问题
-+ 文件夹「resources」存放数据源文件
++ ##### 文件夹「resources」存放数据源文件
+  
   - 「一.数据源1.xlsx」：数据源1
   - 「一.数据源2-逗号间隔.txt」：数据源2
-+ 文件夹「Processing_source」存放数据源的处理结果
++ ##### 文件夹「Processing_source」存放数据源的处理结果
+  
   - 「一.数据源1_NEW.xlsx」：新数据源1
   - 「一.数据源2_NEW.xlsx」：新数据源2
   - 「合并数据源.xlsx」：最终合并数据结果
-+ 文件夹「result」存放运行结果截图
++ ##### 文件夹「result」存放运行结果截图
+  
   + 输出合并后数据源
   + 输出学生中家乡在Beijing的所有课程的**平均成绩**
   + 输出学生中家乡在广州，课程1在80分以上，且课程9在9分以上的男同学的**数量**
@@ -144,7 +150,7 @@ vector<float> data;
 
 
 
-### getCount
+### getCount筛选函数
 
 ```python
 def getCount(key, value):
@@ -157,7 +163,7 @@ def getCount(key, value):
 
 ### score体能成绩量化函数
 
-```
+```python
 def score(key):
     """将体能成绩量化：excellent = 2, good = 1, general = 0, bad =-1."""
     sum = []
@@ -179,7 +185,7 @@ def score(key):
 
 ### 计算平均值函数
 
-```
+```python
 def Avg(list):
     """计算平均值 avg(a)=（a1+a2+……+an)/n"""
     sum = 0
@@ -196,7 +202,7 @@ def Avg(list):
 
 ### 标准差函数
 
-```
+```python
 def Cov(list):
     """计算标准差s
     协方差：s**2 = ((x1-avg(x))**2+(x2-avg(x))**2+……+(xn-avg(xn))**2)/(n-1)
@@ -215,7 +221,7 @@ def Cov(list):
 
 ### 计算A'函数
 
-```
+```python
 def course(row):
     """计算A‘ ：计算 a’ = (ak-mean(A))/std(A)"""
     list_a = []
@@ -231,7 +237,7 @@ def course(row):
 
 ### 计算B'函数
 
-```
+```python
 def b():
     """计算B‘ ：计算 b’ = (bk-mean(B))/std(B)"""
     num = score('Constitution')
@@ -246,7 +252,7 @@ def b():
 
 ### 相关性函数
 
-```
+```python
 def correlation():
     """计算相关性；correlation(A,B) = A'* B' """
     key = ['C1', 'C2', 'C3', 'C4', 'C5', 'C6', 'C7', 'C8', 'C9']
@@ -328,7 +334,7 @@ def correlation():
 
 在数据计算时，缺失的数据给与一个人为指定的数值。
 
-注：因为python读到空白值时，是一个无类型的nan(Not a Number)。需用math库的 math.isnan()函数判空。
+解决：因为python读到空白值时，是一个无类型的nan(Not a Number)。需用math库的 math.isnan()函数判空。
 
 ### 2.数据重复
 
@@ -370,7 +376,7 @@ def correlation():
 
 ### 5.体能成绩的计算
 
-先将其成绩量化，我组之策略是：excellent(杰出) = 2, good(好) = 1, general(普通) = 0, bad(坏) = -1.数值化后当正常数据处理。
+先将其成绩**量化**，我组之策略是：excellent(杰出) = 2, good(好) = 1, general(普通) = 0, bad(坏) = -1.数值化后当正常数据处理。
 
 ## Git安装及语法
 
