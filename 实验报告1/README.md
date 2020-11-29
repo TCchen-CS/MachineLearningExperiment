@@ -155,35 +155,17 @@ def getCount(key, value):
 
 
 
-### score
-
-```
-def score(Con_City):
-    sum = 0
-    people_sum = Con_City.count();
-    for i in Con_City:
-        if i == 'good':
-            sum += 2
-        elif i == 'general':
-            sum += 0
-        elif i == 'bad':
-            sum += -1
-        else:
-            people_sum -= 1
-    return sum, people_sum
-```
-
-
-
-### 体能成绩量化函数
+### score体能成绩量化函数
 
 ```
 def score(key):
-    """将体能成绩量化：good=2, general=0, bad=-1"""
+    """将体能成绩量化：excellent = 2, good = 1, general = 0, bad =-1."""
     sum = []
     for i in df[key]:
-        if i == 'good':
+        if i == 'excellent':
             sum.append(2)
+        elif i == 'good':
+            sum.append(1)
         elif i == 'general':
             sum.append(0)
         elif i == 'bad':
@@ -324,83 +306,77 @@ def correlation():
 
 ### 涉及的技术
 
-| 调用的函数        | 函数说明 |
-| ----------------- | -------- |
-| open_workbook     |          |
-| sheet_by_name     |          |
-| MySQLdb.connect   |          |
-| cursor            |          |
-| cursor.execute    |          |
-| cursor.close      |          |
-| database.commit   |          |
-| database.close    |          |
-| openpyxl.Workbook |          |
-| openpyxl.active   |          |
-| openpyxl.save     |          |
-|                   |          |
-|                   |          |
-|                   |          |
+| 调用的函数                | 函数说明                                                     |
+| ------------------------- | ------------------------------------------------------------ |
+| open_workbook(filename)   | 打开文件，文件名若包含中文，会报错找不到这个文件或目录。<br>参数：filename文件名 |
+| sheet_by_name(sheetname)  | 获取要遍历的sheet<br>参数：sheetname页名                     |
+| MySQLdb.connect           | 连接Mysql数据库，返回一个数据库连接对象。<br>参数列表：<br>host，连接的数据库服务器主机名，默认为本地主机(localhost)。<br>user，连接数据库的用户名，默认为当前用户。<br>passwd，连接密码，没有默认值。<br>db，连接的数据库名，没有默认值。<br>port，指定数据库服务器的连接端口，默认是3306。 |
+| cursor                    | 游标是系统为用户开设的一个数据缓冲区，存放SQL语句的执行结果  |
+| cursor.execute(sql,param) | 执行数据库操作                                               |
+| cursor.close              | 关闭指针对象                                                 |
+| database.commit           | 事务提交                                                     |
+| database.close            | 关闭数据库                                                   |
+| openpyxl.Workbook         | 创建至少一个worksheet（工作表）                              |
+| openpyxl.active           | active_sheet_index这个属性，默认设置的值是0，除非你指定一个值，否则总是获取到第一个worksheet。 |
+| openpyxl.save             | 保存工作表                                                   |
 
 # 难题与解决
 
-前言：非常惭愧做本次实验基本是从0开始，除了理解实验要求不是难题，其余一切代码实现几乎都是难题，无论是简单的导入还是复杂的清洗、合并、查询，都花费了大量的时间和精力用于各种百度上，也从中收集了一些个人认为很不错的文章，同时也在源代码中做好了标记，下面会根据标记处所遇到的问题以及解决办法罗列在下方，今后一定洗心革面好好学习天天向上
+### 1.数据缺失
 
-## *1
+在数据插入时，写入未异常故不做操作。
 
-### [\# Numpy的基础知识](https://mp.weixin.qq.com/s?__biz=MjM5MDEzNDAyNQ==&mid=402378855&idx=1&sn=77ed3c403aa00977e66a6d712b565f44&scene=21#wechat_redirect)
+在数据计算时，缺失的数据给与一个人为指定的数值。
 
-### [# Panda的基础知识](https://mp.weixin.qq.com/s?__biz=MjM5MDEzNDAyNQ==&mid=402568021&idx=1&sn=66d5234a31f2de640baa71439f856a33&scene=21#wechat_redirect)
+注：因为python读到空白值时，是一个无类型的nan(Not a Number)。需用math库的 math.isnan()函数判空。
 
-## *2
+### 2.数据重复
 
-### [\# 数据导入](https://mp.weixin.qq.com/s?__biz=MjM5MDEzNDAyNQ==&mid=402829681&idx=1&sn=3042132921889b2b5414fff28513b05b&scene=21#wechat_redirect)
+##### 数据源1.
 
-### [\# .drop_duplicates 用法说明](https://www.cnblogs.com/yaos/p/9837448.html)
+存入数据库时，将ID设为主键，ID重复的插入表SQL语句会插入失败，并抛出异常。
 
-### [\# SettingwithCopyWarning（不加.copy()会报警告的原因）](https://blog.csdn.net/xiaofeixia666888/article/details/106807181)
+##### 数据源2.
 
-## *3
+转为Excel文件后，利用Python对Excel的库函数将重复的去除。
 
-### [\# Pandas中把数据格式（df,array）的相互转换](https://blog.csdn.net/weixin_43708040/article/details/87275815)
+### 3.数据单位不统一
 
-### [\# numpy对象折叠成一维的数组1](https://blog.csdn.net/likeyou1314918273/article/details/89735607)
+##### 学号(ID)编号不统一
 
-### [\# numpy对象折叠成一维的数组2](https://www.pythonheidong.com/blog/article/430164/3f1749c78e817b2d3ec0/)
+在将数据库表中数据加载到本地时，ID号字符串转整数型与202000做加法计算，再存入Excel表中。
 
-### [\# 替换异常值](https://mp.weixin.qq.com/s?__biz=MjM5MDEzNDAyNQ==&mid=2650313425&idx=1&sn=72ebfbe60eb592e5b36aa0fd71c508d5&scene=21#wechat_redirect)
+##### 性别(Gender)叫法不统一
 
-## *4
+两数据源：男（boy，male），女（girl，female）。
 
-### [\# 去除空格](https://mp.weixin.qq.com/s?__biz=MjM5MDEzNDAyNQ==&mid=2650313491&idx=1&sn=08d3dcaf1bace4265691fa7541c05727&scene=21#wechat_redirect)
+小组将性别规定为男（boy），女（girl）。
 
-## *5
+##### 身高(Height)单位不统一
 
-### [\# 如何在Python中从dataframe列的字符串中删除非字母数字字符？](https://www.cnpython.com/qa/61821)
+因为实验题目要求身高单位为cm。
 
-## *6
+### 4.数据合并
 
-### [# 数据合并](https://mp.weixin.qq.com/s?__biz=MjM5MDEzNDAyNQ==&mid=2650313362&idx=1&sn=3d8b068493098a942241fbe8662a81b9&scene=21#wechat_redirect)
+两个数据源之间存在重复的数据，或者拥有对方缺失的数据。
 
-## *7
+##### 1）先以数据源1为主表，数据源2为副表，使用panda的处理excel的合并函数combine做合并，目的是将补	  全表1空缺内容。合并结果存放于临时表内。
 
-### [\# 用一个数据源的数据填充另一个数据源的缺失值](https://www.cnblogs.com/yuxiangyang/p/11286394.html)
+##### 2）而后再将临时表与表2的合并，因为数据源2存在数据源1没有的列数据。
 
-## *8
+##### 3）因为合并结果是无序，存在重复的数据，故需要使用去重复，排序的函数进行处理。
 
-### [\# 有缺失值默认给float类型](https://www.cnblogs.com/everfight/p/10855654.html)
+注：两次合并皆是用外连接outer进行合并，最大程度保留数据。
 
-## *9
+### 5.体能成绩的计算
 
-### [\# Pandas 查询选择数据](https://www.gairuo.com/p/pandas-selecting-data)	
+先将其成绩量化，我组之策略是：excellent(杰出) = 2, good(好) = 1, general(普通) = 0, bad(坏) = -1.数值化后当正常数据处理。
 
-## *10
+## Git安装及语法
 
-### [pandas--将字符串属性转换为int型](https://blog.csdn.net/weixin_43486780/article/details/105601526)
+转载自CSDN
 
-## *额外
-
-### [\# git语法](https://www.liaoxuefeng.com/wiki/896043488029600)
+### [\# Git的安装与使用教程（超详细！！！）](https://blog.csdn.net/weixin_44950987/article/details/102619708)
 
 # 总结
 
-本次实验所要求的内容并不复杂，难就难在代码实现上，由于没有什么基础可言，90%的时间都拿去搜索各种文档恶补相关知识去了，可谓是受益匪浅，了解到了Python中的Numpy库以及Pandas库，也在不断捣鼓的过程中摸索出了一些相通的方法，第一次将项目推到GitHub上，也开始意识到要对自己写出的代码负责，这份沉甸甸的责任感使我不断优化自身代码，虽然学习Git语法也花费了我不少时间，整个实验花费了远多于以往实验的精力和时间，但结果总归是好的，相信接下来的实验会更加有的放矢更加得心应手，期间非常感谢彭老师的悉心指导
