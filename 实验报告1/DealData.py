@@ -34,7 +34,6 @@ for i in range(0, Beijing_len):
     print('ID:%s\tName:%8s\tGrade_Avg= %0.3f' % (In_Beijing.iloc[i][0], In_Beijing.iloc[i][1], sum / 9))
 print("===========================")
 
-
 # 二. 查找学生中家乡在广州，课程1在80分以上，且课程10在9分以上的男同学
 In_Guangzhou = getCount('City', 'Guangzhou')
 In_Shanghai = getCount('City', 'Shanghai')
@@ -51,13 +50,16 @@ print("===========================")
 Con_GZ = In_Guangzhou['Constitution']
 Con_Sh = In_Shanghai['Constitution']
 
-# good =2,general =0,bad =-1.
+
+# excellent = 2, good = 1, general = 0, bad =-1.
 def score(Con_City):
     sum = 0
     people_sum = Con_City.count();
     for i in Con_City:
-        if i == 'good':
+        if i == 'excellent':
             sum += 2
+        elif i == 'good':
+            sum += 1
         elif i == 'general':
             sum += 0
         elif i == 'bad':
@@ -78,13 +80,16 @@ else:
 
 print("===========================")
 
+
 # 四.学习成绩和体能测试成绩，两者的相关性是多少？
 def score(key):
-    """将体能成绩量化：good=2, general=0, bad=-1"""
+    """将体能成绩量化：excellent = 2, good = 1, general = 0, bad =-1."""
     sum = []
     for i in df[key]:
-        if i == 'good':
+        if i == 'excellent':
             sum.append(2)
+        elif i == 'good':
+            sum.append(1)
         elif i == 'general':
             sum.append(0)
         elif i == 'bad':
@@ -92,6 +97,7 @@ def score(key):
         else:
             sum.append(0)
     return sum
+
 
 def Avg(list):
     """计算平均值 avg(a)=（a1+a2+……+an)/n"""
@@ -116,7 +122,7 @@ def Cov(list):
             nan_num += 1
         else:
             result += (i - Avg(list)) ** 2
-    return (result / (len(list)+nan_num)) ** 0.5
+    return (result / (len(list) + nan_num)) ** 0.5
 
 
 def course(row):
@@ -148,13 +154,14 @@ def correlation():
     for i in range(len(key)):
         list_a = course(key[i])
         for e in range(len(list_a)):
-            sum = 0 # 计算结果
+            sum = 0  # 计算结果
             # 一维矩阵做相乘
             for col in range(len(list_b)):
-                temp = list_a[col] * list_b[col] # 点积
+                temp = list_a[col] * list_b[col]  # 点积
                 if math.isnan(list_a[col]):
                     print("发现nan")
                 sum += temp
         print("\n%s 与 Constitution 的相关系数：%s" % (key[i], temp))
+
 
 correlation()
