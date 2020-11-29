@@ -56,11 +56,11 @@ vector<float> data;
 
 可能用到的公式：
 
-| 均值公式             | ![img1](https://github.com/TCchen-CS/MachineLearningExperiment/raw/master/Screenshots/1.png) |
-| :------------------- | :----------------------------------------------------------: |
-| 协方差公式           | ![img2](https://github.com/TCchen-CS/MachineLearningExperiment/raw/master/Screenshots/2.png) |
-| z-score规范化        | ![img3](https://github.com/TCchen-CS/MachineLearningExperiment/raw/master/Screenshots/3.png) |
-| 数组A和数组B的相关性 | ![img4](https://github.com/TCchen-CS/MachineLearningExperiment/raw/master/Screenshots/4.png) |
+| 均值公式                 |                             img1                             |
+| :----------------------- | :----------------------------------------------------------: |
+| **协方差公式**           | **[img2](https://github.com/TCchen-CS/MachineLearningExperiment/raw/master/实验报告一/Screenshots/2.png)** |
+| **z-score规范化**        |                           **img3**                           |
+| **数组A和数组B的相关性** |                           **img4**                           |
 
 注意：计算部分不能调用库函数；画图/可视化显示可以用可视化API或工具实现。
 
