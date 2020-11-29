@@ -56,11 +56,11 @@ vector<float> data;
 
 可能用到的公式：
 
-| 均值公式             | ![img](https://gitee.com/chi2b/pic-clound/raw/master/img/MZxvju9kaLGQm3PWf8OsgA) |
+| 均值公式             | ![img1](https://github.com/TCchen-CS/MachineLearningExperiment/raw/master/Screenshots/1.png) |
 | :------------------- | :----------------------------------------------------------: |
-| 协方差公式           | ![img](https://gitee.com/chi2b/pic-clound/raw/master/img/WzKGNUBrrSKwDAJURyVRQA) |
-| z-score规范化        | ![img](https://gitee.com/chi2b/pic-clound/raw/master/img/DREX3MFPw-d3hZhtAkyp4g) |
-| 数组A和数组B的相关性 | ![img](https://gitee.com/chi2b/pic-clound/raw/master/img/XwYEh8-AUcIxFt2zVQ-sEg)<br/>**这里A=[a1, a2,...ak,..., an],B=[b1, b2,...bk,..., bn]<br/>mean(A)代表A中元素的平均值std是标准差，即对协方差的开平方.<br/>点乘的定义：**![img](https://gitee.com/chi2b/pic-clound/raw/master/img/odNr0YyX8NwtmlJUDvD2lQ) |
+| 协方差公式           | ![img2](https://github.com/TCchen-CS/MachineLearningExperiment/raw/master/Screenshots/2.png) |
+| z-score规范化        | ![img3](https://github.com/TCchen-CS/MachineLearningExperiment/raw/master/Screenshots/3.png) |
+| 数组A和数组B的相关性 | ![img4](https://github.com/TCchen-CS/MachineLearningExperiment/raw/master/Screenshots/4.png) |
 
 注意：计算部分不能调用库函数；画图/可视化显示可以用可视化API或工具实现。
 
