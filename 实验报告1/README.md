@@ -56,11 +56,11 @@ vector<float> data;
 
 可能用到的公式：
 
-| 均值公式                 | ![img1](https://github.com/TCchen-CS/MachineLearningExperiment/blob/master/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A1/Screenshots/1.png) |
-| :----------------------- | :----------------------------------------------------------: |
-| **协方差公式**           | **![img2](https://github.com/TCchen-CS/MachineLearningExperiment/blob/master/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A1/Screenshots/2.png)** |
-| **z-score规范化**        | ![img3](https://github.com/TCchen-CS/MachineLearningExperiment/blob/master/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A1/Screenshots/3.png) |
-| **数组A和数组B的相关性** | ![img4](https://github.com/TCchen-CS/MachineLearningExperiment/blob/master/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A1/Screenshots/4.png) |
+| 均值公式                 | ![1.png](./Screenshots/1.png) |
+| :----------------------- | :---------------------------: |
+| **协方差公式**           | ![2.png](./Screenshots/2.png) |
+| **z-score规范化**        | ![3.png](./Screenshots/3.png) |
+| **数组A和数组B的相关性** | ![4.png](./Screenshots/4.png) |
 
 注意：计算部分不能调用库函数；画图/可视化显示可以用可视化API或工具实现。
 
