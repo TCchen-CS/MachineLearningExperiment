@@ -23,7 +23,25 @@ def Avg(list):
             nan_num += 1
         else:
             sum += i
+        if nan_num == len(list):
+            return 0
     return sum / (len(list) - nan_num)
+
+
+def Cov(list):
+    """计算协方差s**2
+    协方差：s**2 = ((x1-avg(x))**2+(x2-avg(x))**2+……+(xn-avg(xn))**2)/(n-1)
+    """
+    result = 0
+    nan_num = 0
+    for i in list:
+        if math.isnan(i):
+            nan_num += 1
+        else:
+            result += (i - Avg(list)) ** 2
+        if nan_num == len(list):
+            return 0
+    return result / (len(list) + nan_num)
 
 
 # 将学生体育成绩量化
@@ -43,29 +61,17 @@ for i in range(len(df)):
 for i in range(len(df)):
     df[i][9] = 0
 
-
-def Cov(list):
-    """计算协方差s**2
-    协方差：s**2 = ((x1-avg(x))**2+(x2-avg(x))**2+……+(xn-avg(xn))**2)/(n-1)
-    """
-    result = 0
-    nan_num = 0
-    for i in list:
-        if math.isnan(i):
-            nan_num += 1
-        else:
-            result += (i - Avg(list)) ** 2
-    return result / (len(list) + nan_num)
-
-
 # 将归一化数据保存为txt文件
-f = open("./归一化后数据.txt", "w", encoding="utf-8")
+f = open("./归一化数据.txt", "w", encoding="utf-8")
 # f.write("C1"+"\t"+"C2"+"\t"+"C3"+"\t"+"C4"+"\t"+"C5"+"\t"+"C6"+"\t"+"C7"+"\t"+"C8"+"\t"+"C9"+"\t"+"C10"+"\t"+"Constitution")
 # f.write("\r\n")
 for i in range(len(df)):
     for j in range(len(df[i])):
-        result_temp = ("%.5f" % ((df[i][j] - Avg(df[i])) / Cov(df[i])))
-        f.write(str(result_temp) + " ")
+        if Cov(df[:, j]) != 0:
+            result = (df[i][j] - Avg(df[:, j])) / Cov(df[:, j])
+            f.write(str( ("%.5f" % result)) + ",")
+        else:
+            f.write("0" + ",")
     f.write("\r\n")
 f.close()
 
