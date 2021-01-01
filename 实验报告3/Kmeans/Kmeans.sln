@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.572
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Kmeans", "Kmeans\Kmeans.vcxproj", "{483C9569-1707-408A-8A60-BAD6CC4E515A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{483C9569-1707-408A-8A60-BAD6CC4E515A}.Debug|x64.ActiveCfg = Debug|x64
+		{483C9569-1707-408A-8A60-BAD6CC4E515A}.Debug|x64.Build.0 = Debug|x64
+		{483C9569-1707-408A-8A60-BAD6CC4E515A}.Debug|x86.ActiveCfg = Debug|Win32
+		{483C9569-1707-408A-8A60-BAD6CC4E515A}.Debug|x86.Build.0 = Debug|Win32
+		{483C9569-1707-408A-8A60-BAD6CC4E515A}.Release|x64.ActiveCfg = Release|x64
+		{483C9569-1707-408A-8A60-BAD6CC4E515A}.Release|x64.Build.0 = Release|x64
+		{483C9569-1707-408A-8A60-BAD6CC4E515A}.Release|x86.ActiveCfg = Release|Win32
+		{483C9569-1707-408A-8A60-BAD6CC4E515A}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {870CB9A6-9F3F-4914-8E6E-20EE99FF8799}
+	EndGlobalSection
+EndGlobal
