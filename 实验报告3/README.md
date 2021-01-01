@@ -312,31 +312,32 @@ def plot(maxClass,x_centerClass,y_centerClass):
 
 ## 调用的库函数
 
-- C++
-  
-  #include <stdlib.h>
+```c++
+#C++
+#include <stdlib.h>
 #include <math.h>
-  #include <time.h>
-  #include <iostream>
-  #include <assert.h>
-  
-- python
-  
-  ```python
+#include <time.h>
+#include <iostream>
+#include <assert.h>
+```
+
+```python
+# python
 import pandas as pd
-  import matplotlib.pyplot as plt
-  import numpy as np
-  ```
+import matplotlib.pyplot as plt
+import numpy as np
+```
 
 ## 难题与解决
 
-[文件的读取]: https://blog.csdn.net/mengdicfm/article/details/82910642
-[numpy的数组操作]: https://www.runoob.com/numpy/numpy-array-manipulation.html
-[C++实现K-均值（K-Means）聚类算法]: https://blog.csdn.net/lavorange/article/details/28854929
-[绘制散点图]: https://www.cnblogs.com/Pythonmiss/p/10631709.html
+[文件的读取](https://blog.csdn.net/mengdicfm/article/details/82910642)
 
+[numpy的数组](https://www.runoob.com/numpy/numpy-array-manipulation.html)
 
+[C++实现K-均值（K-Means）聚类算法](https://blog.csdn.net/lavorange/article/details/28854929 )
+
+[绘制散点图](https://www.cnblogs.com/Pythonmiss/p/10631709.html  )
 
 ## 总结
 
-本次实验采取两种语言实现，k-means算法采用要求的c++语言实现，数据的可视化采用python实现。题目一需要实验二的归一化数据，最终两题的数据结果存在对应的txt文件里，第二题中根据可视化结果显示，当数据分为 两 类时，效果最为明显。
+#### 		本次实验采取两种语言实现，k-means算法采用要求的c++语言实现，数据的可视化采用python实现。题目一需要实验二的归一化数据，最终两题的数据结果存在对应的txt文件里，第二题中根据可视化结果显示，当数据分为 两 类时，效果最为明显。
